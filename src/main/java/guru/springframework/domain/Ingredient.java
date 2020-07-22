@@ -13,6 +13,11 @@ public class Ingredient {
     private String description;
     private BigDecimal amount;
 
+    // It is a unidirectional relationship
+    // By default is EAGER, just for showcase purpose
+    @OneToOne(fetch = FetchType.EAGER)
+    private UnitOfMeasure uom;
+
     @ManyToOne
     private Recipe recipe;
 
@@ -49,5 +54,13 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+
+    public UnitOfMeasure getUom() {
+        return uom;
+    }
+
+    public void setUom(UnitOfMeasure uom) {
+        this.uom = uom;
     }
 }
