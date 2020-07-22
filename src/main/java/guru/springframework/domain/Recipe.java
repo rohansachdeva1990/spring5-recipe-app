@@ -16,7 +16,6 @@ public class Recipe {
     private String source;
     private String url;
     private String directions;
-    // TODO: add difficulty
 
     // By adding cascade, we ensure that this is the owning entity
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
@@ -25,7 +24,11 @@ public class Recipe {
     @Lob
     private Byte[] image;
 
+    @Enumerated(value = EnumType.STRING)
+    private Difficulty difficulty;
+
     // By adding the cascade, we ensure that this is the owning entity
+
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
@@ -110,5 +113,21 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 }
