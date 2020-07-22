@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -17,9 +18,14 @@ public class Recipe {
     private String directions;
     // TODO: add difficulty
 
+    // By adding cascade, we ensure that this is the owning entity
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
+
     @Lob
     private Byte[] image;
 
+    // By adding the cascade, we ensure that this is the owning entity
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
 
